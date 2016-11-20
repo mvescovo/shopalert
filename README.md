@@ -26,6 +26,7 @@ The app also used Google Cloud Messaging and some Google API's for geofencing an
 - Shops will show the relevant Google Street View image but not all shops have such an image and so will not show one and there's no placeholder for this situation. 
 # Issues
 - Any backend services that require payment have been shutdown since the assignment is over and the free educational use has expired. As such, significant work is required to get the app back up and running; you can't simply run the app and expect it to work.
+
 # Licence
 [![AUR](https://img.shields.io/aur/license/yaourt.svg)]()
 
