@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest package="com.shopalert.app.shopalert" xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Permissions -->
+    <permission android:name="com.shopalert.app.permission.C2D_MESSAGE" android:protectionLevel="signature"/>
+    <uses-permission-sdk-23 android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE"/>
+    <uses-permission android:name="android.permission.READ_SYNC_SETTINGS"/>
+    <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS"/>
+    <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS"/>
+    <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="com.shopalert.app.permission.C2D_MESSAGE"/>
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_add_shopping_cart_24dp"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+
+        <!-- Activities -->
+        <activity
+            android:name="com.shopalert.app.application.MainActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="com.shopalert.app.products.ProductsActivity"
+            android:label="@string/title_activity_products"
+            android:parentActivityName="com.shopalert.app.application.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+
+        <activity
+            android:name="com.shopalert.app.addproduct.AddProductActivity"
+            android:label="@string/title_activity_add_product"
+            android:parentActivityName="com.shopalert.app.products.ProductsActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.shopalert.app.products.ProductsActivity"/>
+        </activity>
+
+        <activity
+            android:name="com.shopalert.app.shopswithprices.ShopsWithPricesActivity"
+            android:label="@string/title_activity_shops_with_prices"
+            android:parentActivityName="com.shopalert.app.products.ProductsActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.shopalert.app.products.ProductsActivity"/>
+        </activity>
+
+        <!-- Providers -->
+        <provider
+            android:name="com.shopalert.app.data.ShopAlertProvider"
+            android:authorities="com.shopalert.app"
+            android:exported="false"
+            android:syncable="true"/>
+
+        <!-- Services -->
+        <service android:name="com.shopalert.app.sync.ShopAlertAuthenticatorService">
+            <intent-filter>
+                <action android:name="android.accounts.AccountAuthenticator"/>
+            </intent-filter>
+
+            <meta-data
+                android:name="android.accounts.AccountAuthenticator"
+                android:resource="@xml/authenticator"/>
+        </service>
+
+        <service
+            android:name="com.shopalert.app.sync.ShopAlertSyncService"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.content.SyncAdapter"/>
+            </intent-filter>
+
+            <meta-data
+                android:name="android.content.SyncAdapter"
+                android:resource="@xml/syncadapter"/>
+        </service>
+
+        <service
+            android:name="com.shopalert.app.gcm.RegistrationIntentService"
+            android:exported="false">
+        </service>
+
+        <service
+            android:name="com.shopalert.app.gcm.MyInstanceIDListenerService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.android.gms.iid.InstanceID"/>
+            </intent-filter>
+        </service>
+
+        <service
+            android:name="com.shopalert.app.gcm.MyGcmListenerService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE"/>
+            </intent-filter>
+        </service>
+
+        <service android:name="com.shopalert.app.geofence.GeofenceTransitionsIntentService"/>
+
+        <!-- Receivers -->
+        <receiver
+            android:name="com.google.android.gms.gcm.GcmReceiver"
+            android:exported="true"
+            android:permission="com.google.android.c2dm.permission.SEND">
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE"/>
+
+                <category android:name="com.example.gcm"/>
+            </intent-filter>
+        </receiver>
+
+        <!-- Metadata -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key"/>
+
+    </application>
+
+</manifest>
