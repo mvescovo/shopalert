@@ -1,6 +1,17 @@
 # Shop Alert
 An Android app to alert the user when an item of interest is nearby.
 
+# Features
+- User can add a product to the database.
+- The product is then searched via a pricing website to obtain the 3 cheapest prices.
+- The price and location of the shop is sent back to the device.
+- When the user comes close to the shop a notification alerts the user.
+- Different user accounts can hold different products while using the same device (via Google signin).
+- Products will follow the user between devices via the cloud.
+
+# Components
+<img src="https://cloud.githubusercontent.com/assets/15829736/22180057/42aca30e-e0b9-11e6-9dc3-7441abdf5067.png">
+
 # Install
 
 ###### Front end
@@ -14,14 +25,6 @@ The app requires a back end to work and this is not included.
 - a page scraping server to get prices from the chosen source.
 
 The app also used Google Cloud Messaging and some Google API's for geofencing and signin.
-
-# Features
-- User can add a product to the database.
-- The product is then searched via a pricing website to obtain the 3 cheapest prices.
-- The price and location of the shop is sent back to the device.
-- When the user comes close to the shop a notification alerts the user.
-- Different user accounts can hold different products while using the same device (via Google signin).
-- Products will follow the user between devices via the cloud.
 
 # Limitations
 - Currently it can only search one particular website which only finds prices for electronics items. Therefore other items won't return any shops.
